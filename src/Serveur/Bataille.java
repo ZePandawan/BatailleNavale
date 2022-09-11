@@ -7,12 +7,13 @@ import java.util.Scanner;
 public class Bataille {
     int id_joueur1;
     int id_joueur2;
-    //String[] pions_a_poser = {"Sous-Marin","Contre-Torpilleur","Porte-Avions"};
 
     ArrayList<String> pions_a_poser = new ArrayList<>();
     ArrayList<String> pions_poses = new ArrayList<>();
     //String[] pions_poses = {};
     boolean partie_commencee; //False = partie non commencée; True = partie commencée
+
+    //Initialisation des deux plateaux des joueurs en tant que plateau en 8*8 vides
     int[][] plateau_j1 = new int[][]{   {0,0,0,0,0,0,0,0},
                                         {0,0,0,0,0,0,0,0},
                                         {0,0,0,0,0,0,0,0},
@@ -32,22 +33,24 @@ public class Bataille {
                                         {0,0,0,0,0,0,0,0}};
 
     public Bataille(int id_joueur1,int id_joueur2) {
+        //Initialisation de l'id du premier joueur selon l'id du client
         id_joueur1 = this.id_joueur1;
+        //Initialisation de l'id du second joueur selon l'id du client
         id_joueur2 = this.id_joueur2;
 
+        //Initialisation des différentes pièces à placer
         pions_a_poser.add("Sous-Marin (2 cases)");
         pions_a_poser.add("Contre-Torpilleur (3 cases)");
         pions_a_poser.add("Porte-Avions (4 cases)");
 
+        //On indique que la partie n'a pas encore commencée
         partie_commencee = false;
-
-        //System.out.println(plateau_j1);
-
 
     }
 
     public void start()
     {
+        //On indique que le partie commence puis on initialise le plateau
         partie_commencee = true;
         initialise_plateau(plateau_j1);
         //initialise_plateau(plateau_j2);
@@ -252,7 +255,7 @@ public class Bataille {
                         System.out.println(Integer.toString(i/2) + ") " + lettre_colonne_fin + (point_fin.get(i+1)+1));
                     }
                     System.out.println("Choisissez le numéro correspondant à la disposition que vous souhaitez :");
-                    int choice = lecture_int(point_fin.size());
+                    int choice = lecture_int((point_fin.size()/2)-1);
                     int[] tab_emplacement = new int[4];
                     tab_emplacement[0] = point_depart[1];
                     tab_emplacement[1] = point_depart[0];
@@ -262,7 +265,7 @@ public class Bataille {
 
                     //plateau_j1[point_depart[0]][point_depart[1]] = 1;
 
-                    //placer_bateau(tab_emplacement, 1)
+                    placer_bateau(tab_emplacement, 1);
 
                     break;
 
@@ -388,6 +391,23 @@ public class Bataille {
         }
 
         return point_fin;
+    }
+
+    public void placer_bateau(int[] tab_emplacement, int id_joueur)
+    {
+        System.out.println(tab_emplacement[0]);
+        System.out.println(tab_emplacement[1]);
+        System.out.println(tab_emplacement[2]);
+        System.out.println(tab_emplacement[3]);
+        if(id_joueur == 1){
+            if(tab_emplacement[0] == tab_emplacement[2]){
+                while(tab_emplacement[1] != tab_emplacement[3]){
+
+                    //A completer à partir de ici
+
+                }
+            }
+        }
     }
 
 }
